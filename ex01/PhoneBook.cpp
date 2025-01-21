@@ -16,7 +16,11 @@ void PhoneBook::addContact(){
     }
 }
 
-void PhoneBook::displayContacts()const {
+bool PhoneBook::displayContacts()const {
+    if(contact_count == 0){
+        std::cout << "There are no contacts on the phonebook. Add one or exit." << std::endl;
+        return false;
+    }
     std::cout << std::setw(10) << "Index" << "|"
               << std::setw(10) << "First Name" << "|"
               << std::setw(10) << "Last Name" << "|"
@@ -25,15 +29,16 @@ void PhoneBook::displayContacts()const {
     for (int i = 0; i < contact_count; i++){
         contacts[i].displayContactSummary(i+1);
     }
+    return true;
 }
 
-void PhoneBook::displayContactDetails(int index) const{
+bool PhoneBook::displayContactDetails(int index) const{
     if (index < 1 || index > contact_count) {
-        std::cout <<"Invalid index" << std::endl;
-        return;
-        contacts[index-1].displayContactDetails();
+        std::cout <<"Invalid Index. Please enter one of the active indexes." << std::endl;
+        return false;
     }
-
+    contacts[index-1].displayContactDetails();
+    return true;
 }
 
 

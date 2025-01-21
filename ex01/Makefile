@@ -1,8 +1,8 @@
-NAME = megaphone 
+NAME = phonebook 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SOURCES = 
+SOURCES = Contact.cpp PhoneBook.cpp main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 NO_COLOR = \033[0;39m

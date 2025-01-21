@@ -12,8 +12,8 @@ private:
 public:
     PhoneBook(); // constructor - initializes the PhoneBook object, sets the count and index to 0
     void addContact();
-    void displayContacts() const;
-    void displayContactDetails(int index) const; 
+    bool displayContacts() const;
+    bool displayContactDetails(int index) const; 
 
 };
 
