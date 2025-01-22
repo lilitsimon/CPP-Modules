@@ -1,0 +1,22 @@
+Implementation Goals
+
+Static Members Initialization:
+  static variables need to be initialized outside the class.
+Constructor Logic:
+ Assign a unique _accountIndex to each account.
+ Increment _nbAccounts and update _totalAmount based on initial_deposit.
+Destructor Logic:
+ Log the destruction of the account.
+ Ensure _nbAccounts decrements.
+Deposit and Withdrawal Handling:
+ Adjust _amount for each deposit or withdrawal.
+ Update _totalAmount, _nbDeposits, or _nbWithdrawals as necessary.
+ makeWithdrawal should check if the withdrawal is feasible before proceeding.
+Output Formatting:
+ Ensure consistency with the log file (e.g., timestamped logs, specific formats).
+Helper Methods:
+_displayTimestamp: Likely involves fetching and formatting the current time.
+Static Method Behavior
+
+Retrieve and display aggregate account statistics.
+Likely invoked by the tests.cpp file to verify correctness.
