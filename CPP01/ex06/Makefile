@@ -1,10 +1,9 @@
-NAME =
+NAME = harlfilter
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SOURCES = 	main.cpp \
-			 \
-			 \
+			Harl.cpp \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
