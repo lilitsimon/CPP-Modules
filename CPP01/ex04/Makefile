@@ -1,10 +1,9 @@
-NAME =
+NAME = sed
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SOURCES = 	main.cpp \
-			 \
-			 \
+			Sed.cpp \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
