@@ -66,7 +66,7 @@ void Contact::setContactInfo(){
         if (!phone_number.empty() && is_valid) {
             break;
         }
-        std::cout << "Invalid input. Please enter only numeric numbers." << std::endl;
+        std::cout << "Invalid input. Please enter only numeric characters." << std::endl;
     }
         
     while(true) {
