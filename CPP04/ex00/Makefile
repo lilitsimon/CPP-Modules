@@ -1,14 +1,14 @@
-NAME = diamondtrap
+NAME = animal
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SOURCES = 	main.cpp \
-			ClapTrap.cpp \
-			ScavTrap.cpp \
-			FragTrap.cpp \
-			DiamondTrap.cpp \
+			Animal.cpp \
+			Cat.cpp \
+			Dog.cpp \
+			WrongAnimal.cpp \
+			WrongCat.cpp \
 			
-
 OBJECTS = $(SOURCES:.cpp=.o)
 
 NO_COLOR = \033[0;39m

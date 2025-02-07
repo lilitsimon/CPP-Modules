@@ -1,4 +1,4 @@
-NAME = diamondtrap
+NAME = fragtrap
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
@@ -6,7 +6,6 @@ SOURCES = 	main.cpp \
 			ClapTrap.cpp \
 			ScavTrap.cpp \
 			FragTrap.cpp \
-			DiamondTrap.cpp \
 			
 
 OBJECTS = $(SOURCES:.cpp=.o)
