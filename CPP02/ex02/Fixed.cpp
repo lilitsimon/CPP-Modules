@@ -15,7 +15,7 @@ Fixed &Fixed::operator=(const Fixed &other) {
 Fixed::~Fixed() {}
 
 Fixed::Fixed(const int intValue) {
-    this->_rawBits = intValue << _fractionalBits; // Shift left by 8 bits means multiply by 256. Ex: 10 << 8 becomes 2660
+    this->_rawBits = intValue << _fractionalBits; // Shift left by 8 bits means multiply by 256. Ex: 10 << 8 becomes 2560
 }
 
 Fixed::Fixed(const float floatValue) {
