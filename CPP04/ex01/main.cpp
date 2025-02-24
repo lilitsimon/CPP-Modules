@@ -3,7 +3,7 @@
 #include "Dog.hpp"
 
 
-int main() {
+/*int main() {
     const Animal* animals[6];
     for (int i = 0; i < 3; i++)
         animals[i] = new Dog();
@@ -15,4 +15,14 @@ int main() {
         delete animals[i];
 
     return 0;
+}*/
+
+
+int main() {
+    Dog basic;
+    {
+        Dog tmp = basic; 
+    }
+    return 0;
 }
+
