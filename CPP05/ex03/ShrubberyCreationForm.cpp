@@ -22,16 +22,21 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
-    if(!getIsSigned())
+    if (!getIsSigned()) {
+        std::cerr << "Form is not signed!" << std::endl;
         throw FormNotSignedException();
-    if(executor.getGrade() > getGradeToExecute())
+    }
+    if (executor.getGrade() > getGradeToExecute()) {
+        std::cerr << "Grade too low to execute!" << std::endl;
         throw GradeTooLowException();
-    std::ofstream file((target + "_shrubbery").c_str());
-    if (!file.is_open()) {
-        std::cerr << "Error: Could not open file." << std::endl;
-        return;
     }
 
+    std::ofstream file((target + "_shrubbery").c_str());
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not create or open file." << std::endl;
+        return;
+    }
+    file << "         &        " << std::endl;
     file << "        &&&        " << std::endl;
     file << "       &&&&&       " << std::endl;
     file << "      &&&&&&&      " << std::endl;
@@ -43,4 +48,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     file << "        |||        " << std::endl;
 
     file.close();
+    std::cout << "Tree created successfully!" << std::endl;
 }
