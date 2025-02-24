@@ -16,3 +16,8 @@ int main() {
 
     return 0;
 }
+
+/*int main() {
+    Animal test;
+    return 0;
+}*/
