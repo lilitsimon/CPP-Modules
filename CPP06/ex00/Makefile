@@ -1,9 +1,9 @@
-NAME = 
+NAME = convert
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 SOURCES = 	main.cpp \
-			\
+			ScalarConverter.cpp\
 			
 OBJECTS = $(SOURCES:.cpp=.o)
 
