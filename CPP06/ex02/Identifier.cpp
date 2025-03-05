@@ -20,7 +20,7 @@ void identify(Base* p) {
         return;
     }
 
-    if (dynamic_cast<A*>(p) != NULL) // ✅ Explicitly checking for NULL
+    if (dynamic_cast<A*>(p) != NULL)
         std::cout << "A" << std::endl;
     else if (dynamic_cast<B*>(p) != NULL)
         std::cout << "B" << std::endl;
