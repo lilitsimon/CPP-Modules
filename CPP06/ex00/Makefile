@@ -1,6 +1,6 @@
 NAME = convert
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = 	main.cpp \
 			ScalarConverter.cpp\

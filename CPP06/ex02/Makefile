@@ -1,9 +1,9 @@
-NAME = serialize
+NAME = identify
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCES = 	main.cpp \
-			Serializer.cpp\
+			Identifier.cpp\
 			
 OBJECTS = $(SOURCES:.cpp=.o)
 
