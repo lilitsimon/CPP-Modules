@@ -23,10 +23,15 @@ void ScalarConverter::convert(const std::string& input) {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
         std::cout << "float: " << input;
-        if (input.back() != 'f')
+        if (input[input.length() - 1] != 'f')
             std::cout << "f";
         std::cout << std::endl;
-        std::cout << "double: " << (input.back() == 'f' ? input.substr(0, input.size() - 1) : input) << std::endl;
+        std::cout << "double: ";
+        if (input[input.length() - 1] == 'f') {
+            std::cout << input.substr(0, input.length() - 1) << std::endl;
+        } 
+        else 
+            std::cout << input << std::endl;
         return;
     }
 
