@@ -15,15 +15,21 @@ Base* generate() {
 }
 
 void identify(Base* p) {
-    if(dynamic_cast<A*>(p)) //using this to safely determine the type of an object from polymorphism.  attempts to convert a base class pointer/reference to a derived class type. is succeesds -> actually the type T
+    if (!p) {
+        std::cout << "Null pointer received" << std::endl;
+        return;
+    }
+
+    if (dynamic_cast<A*>(p) != NULL) // ✅ Explicitly checking for NULL
         std::cout << "A" << std::endl;
-    else if(dynamic_cast<B*>(p))
+    else if (dynamic_cast<B*>(p) != NULL)
         std::cout << "B" << std::endl;
-    else if(dynamic_cast<C*>(p))
+    else if (dynamic_cast<C*>(p) != NULL)
         std::cout << "C" << std::endl;
     else 
         std::cout << "Unknown Type" << std::endl;
 }
+
 
 void identify(Base& p) {
     try {
