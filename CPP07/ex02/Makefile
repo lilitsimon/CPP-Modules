@@ -2,7 +2,7 @@ NAME = array
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SOURCES = 	main.cpp \
+SOURCES = 	mymain.cpp \
 	
 			
 OBJECTS = $(SOURCES:.cpp=.o)
