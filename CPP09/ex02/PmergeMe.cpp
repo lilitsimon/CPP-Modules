@@ -58,7 +58,7 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& arr) {
             pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
         else
             pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
-        ++i += 2;
+        i += 2;
     }
     if (i < arr.size()) // the upnpaired element
         pend.push_back(arr[i]);
@@ -90,7 +90,7 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& arr) {
             pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
         else
             pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
-        ++i += 2;
+        i += 2;
     }
     if (i < arr.size())
         pend.push_back(arr[i]);
