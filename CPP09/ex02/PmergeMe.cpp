@@ -2,7 +2,7 @@
 
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(const PmergeMe& other ) {
+PmergeMe::PmergeMe(const PmergeMe& other) {
     this->vec = other.vec;
     this->deq = other.deq;
 }
@@ -26,8 +26,8 @@ void PmergeMe::processInput(int argc, char* argv[]) {
         std::istringstream iss(argv[i]);
         int num;
 
-        if(!(iss >> num) || num <= 0) {
-            std::cerr << "Error: Invalud Input -> " << argv[i] << std::endl;
+        if (!(iss >> num) || num <= 0) {
+            std::cerr << "Error" << std::endl;
             exit(1);
         }
 
@@ -36,33 +36,78 @@ void PmergeMe::processInput(int argc, char* argv[]) {
     }
 }
 
-void PmergeMe::mergeInsertionSortVector(std::vector<int>& arr) {
-    if (arr.size() <= 1)
-        return;
-    
-    std::vector<int> sorted;
-    sorted.push_back(arr[0]);
-
-    for(size_t i= 1; i < arr.size(); i++) {
-        std::vector<int>::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), arr[i]);
-        sorted.insert(pos, arr[i]);
-    }
-
-    arr = sorted;
+void PmergeMe::insertSortedVector(std::vector<int>& arr, int value) {
+    std::vector<int>::iterator pos = std::lower_bound(arr.begin(), arr.end(), value);
+    arr.insert(pos, value);
 }
-void PmergeMe::mergeInsertionSortDeque(std::deque<int>& arr) {
-    if (arr.size() <= 1)
-        return;
-    
-    std::deque<int> sorted;
-    sorted.push_back(arr[0]);
 
-    for(size_t i= 1; i < arr.size(); i++) {
-        std::deque<int>::iterator pos = std::lower_bound(sorted.begin(), sorted.end(), arr[i]);
-        sorted.insert(pos, arr[i]);
+void PmergeMe::insertSortedDeque(std::deque<int>& arr, int value) {
+    std::deque<int>::iterator pos = std::lower_bound(arr.begin(), arr.end(), value);
+    arr.insert(pos, value);
+}
+
+void PmergeMe::fordJohnsonVector(std::vector<int>& arr) {
+    if (arr.size() <= 1) return;
+
+    std::vector<std::pair<int, int> > pairs;
+    std::vector<int> pend; // stores the unpaired element in case the array has odd length.
+
+    size_t i = 0;
+    while (i + 1 < arr.size()) {
+        if (arr[i] < arr[i + 1])
+            pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
+        else
+            pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
+        ++i += 2;
     }
+    if (i < arr.size()) // the upnpaired element
+        pend.push_back(arr[i]);
 
-    arr = sorted;
+    std::vector<int> mainChain; //  building the main chain by extracting the larger value from each pair.
+    for (size_t j = 0; j < pairs.size(); j++)
+        mainChain.push_back(pairs[j].first);
+
+    fordJohnsonVector(mainChain);
+
+    for (size_t j = 0; j < pairs.size(); j++)
+        insertSortedVector(mainChain, pairs[j].second);
+
+    for (size_t j = 0; j < pend.size(); j++)
+        insertSortedVector(mainChain, pend[j]);
+
+    arr = mainChain;
+}
+
+void PmergeMe::fordJohnsonDeque(std::deque<int>& arr) {
+    if (arr.size() <= 1) return;
+
+    std::deque<std::pair<int, int> > pairs;
+    std::deque<int> pend;
+
+    size_t i = 0;
+    while (i + 1 < arr.size()) {
+        if (arr[i] < arr[i + 1])
+            pairs.push_back(std::make_pair(arr[i + 1], arr[i]));
+        else
+            pairs.push_back(std::make_pair(arr[i], arr[i + 1]));
+        ++i += 2;
+    }
+    if (i < arr.size())
+        pend.push_back(arr[i]);
+
+    std::deque<int> mainChain;
+    for (size_t j = 0; j < pairs.size(); j++)
+        mainChain.push_back(pairs[j].first);
+
+    fordJohnsonDeque(mainChain);
+
+    for (size_t j = 0; j < pairs.size(); j++)
+        insertSortedDeque(mainChain, pairs[j].second);
+
+    for (size_t j = 0; j < pend.size(); j++)
+        insertSortedDeque(mainChain, pend[j]);
+
+    arr = mainChain;
 }
 
 void PmergeMe::sortAndMeasure() {
@@ -72,12 +117,12 @@ void PmergeMe::sortAndMeasure() {
     std::cout << std::endl;
 
     std::clock_t startVec = std::clock();
-    mergeInsertionSortVector(vec);
+    fordJohnsonVector(vec);
     std::clock_t endVec = std::clock();
     double durationVec = (double)(endVec - startVec) / CLOCKS_PER_SEC * 1e6;
 
     std::clock_t startDeq = std::clock();
-    mergeInsertionSortDeque(deq);
+    fordJohnsonDeque(deq);
     std::clock_t endDeq = std::clock();
     double durationDeq = (double)(endDeq - startDeq) / CLOCKS_PER_SEC * 1e6;
 
